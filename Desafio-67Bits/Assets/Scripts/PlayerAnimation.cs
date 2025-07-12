@@ -1,11 +1,12 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
     private Animator playerAnimator;
-    private bool idle;
-    private bool move;
-    private bool attack;
+    public bool idle;
+    public bool move;
+    public bool attack;
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
@@ -44,5 +45,12 @@ public class PlayerAnimation : MonoBehaviour
         idle = false;
         move = false;
         attack = true;
+    }
+
+    public IEnumerator WaitAttack()
+    {
+        SetAttack();
+        yield return new WaitForSeconds(0.5f);
+        SetIdle();
     }
 }

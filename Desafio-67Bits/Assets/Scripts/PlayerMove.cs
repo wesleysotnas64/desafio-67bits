@@ -41,6 +41,8 @@ public class PlayerMove : MonoBehaviour
 
     public void Move(Vector3 _direction)
     {
+        if (playerAnimation.attack) return;
+
         bool isMoving = !(_direction == Vector3.zero);
 
         if (isMoving) playerAnimation.SetMove();
@@ -52,5 +54,17 @@ public class PlayerMove : MonoBehaviour
 
         transform.forward = _direction.normalized;
         transform.position += currentSpeed * Time.deltaTime * transform.forward;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        string tag = collision.gameObject.tag;
+        if (tag == "Enemy")
+        {
+            Vector3 posEnemy = collision.gameObject.transform.position;
+            posEnemy.y = transform.position.y;
+            transform.forward = (posEnemy - transform.position).normalized;
+            StartCoroutine(playerAnimation.WaitAttack());
+        }
     }
 }
