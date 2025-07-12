@@ -11,6 +11,7 @@ public class PlayerMove : MonoBehaviour
     private float currentSpeed;
 
     private PlayerAnimation playerAnimation;
+    public StackController stackcController;
 
     void Start()
     {
@@ -59,12 +60,23 @@ public class PlayerMove : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         string tag = collision.gameObject.tag;
-        if (tag == "Enemy")
+        switch (tag)
         {
-            Vector3 posEnemy = collision.gameObject.transform.position;
-            posEnemy.y = transform.position.y;
-            transform.forward = (posEnemy - transform.position).normalized;
-            StartCoroutine(playerAnimation.WaitAttack());
+            case "Enemy":
+                Vector3 posEnemy = collision.gameObject.transform.position;
+                posEnemy.y = transform.position.y;
+                transform.forward = (posEnemy - transform.position).normalized;
+                StartCoroutine(playerAnimation.WaitAttack());
+
+                break;
+
+            case "Carcass":
+                stackcController.AddElementAtStack(collision.gameObject);
+                break;
+
+            default:
+                break;
         }
+    
     }
 }

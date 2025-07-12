@@ -7,6 +7,7 @@ public class PlayerAnimation : MonoBehaviour
     public bool idle;
     public bool move;
     public bool attack;
+    public float attackTime;
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
@@ -50,7 +51,7 @@ public class PlayerAnimation : MonoBehaviour
     public IEnumerator WaitAttack()
     {
         SetAttack();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(attackTime);
         SetIdle();
     }
 }
