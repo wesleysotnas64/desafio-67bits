@@ -10,10 +10,14 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private float currentSpeed;
 
+    private PlayerAnimation playerAnimation;
+
     void Start()
     {
         currentSpeed = baseSpeed;
         direction = Vector3.zero;
+
+        playerAnimation = GetComponent<PlayerAnimation>();
     }
 
     void Update()
@@ -37,7 +41,14 @@ public class PlayerMove : MonoBehaviour
 
     public void Move(Vector3 _direction)
     {
-        if (_direction == Vector3.zero) return;
+        bool isMoving = !(_direction == Vector3.zero);
+
+        if (isMoving) playerAnimation.SetMove();
+        else
+        {
+            playerAnimation.SetIdle();
+            return;
+        }
 
         transform.forward = _direction.normalized;
         transform.position += currentSpeed * Time.deltaTime * transform.forward;
