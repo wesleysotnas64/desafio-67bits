@@ -9,6 +9,8 @@ public class PlayerMove : MonoBehaviour
     private float baseSpeed;
     [SerializeField]
     private float currentSpeed;
+    public bool claveIsActive;
+    public GameObject claveObject;
 
     private PlayerAnimation playerAnimation;
     public StackController stackcController;
@@ -18,6 +20,7 @@ public class PlayerMove : MonoBehaviour
     {
         currentSpeed = baseSpeed;
         direction = Vector3.zero;
+        // claveIsActive = false;
 
         playerAnimation = GetComponent<PlayerAnimation>();
         fixedJoystick = GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
@@ -27,6 +30,8 @@ public class PlayerMove : MonoBehaviour
     {
         ControllersKeyboard();
         ControllersJoystick();
+
+        claveObject.SetActive(claveIsActive);
     }
 
     private void ControllersKeyboard()
@@ -72,27 +77,26 @@ public class PlayerMove : MonoBehaviour
         transform.position += currentSpeed * Time.deltaTime * transform.forward;
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        string tag = collision.gameObject.tag;
+        string tag = other.gameObject.tag;
         switch (tag)
         {
             case "Enemy":
-                Vector3 posEnemy = collision.gameObject.transform.position;
+                Vector3 posEnemy = other.gameObject.transform.position;
                 posEnemy.y = transform.position.y;
                 transform.forward = (posEnemy - transform.position).normalized;
                 StartCoroutine(playerAnimation.WaitAttack());
-                StartCoroutine(collision.gameObject.GetComponent<Enemy>().Struck(0.45f, transform.forward));
+                StartCoroutine(other.gameObject.GetComponent<Enemy>().Struck(0.45f, transform.forward, claveIsActive ? 10.0f : 5.0f));
 
                 break;
 
             case "Carcass":
-                stackcController.AddElementAtStack(collision.gameObject);
+                stackcController.AddElementAtStack(other.gameObject);
                 break;
 
             default:
                 break;
         }
-    
     }
 }

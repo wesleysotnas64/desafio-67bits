@@ -5,44 +5,68 @@ public class Enemy : MonoBehaviour
 {
     public bool live;
     private Transform playerTransform;
-    private Vector3 look;
     public float speed;
-    public bool walking;
+    public bool walk;
     public bool idle;
+    public bool loose;
+    public bool run;
+
+    private Animator animatorController;
+    public GameObject stackElement;
 
     void Start()
     {
         live = true;
         playerTransform = GameObject.Find("Player").transform;
-        // StartCoroutine(WalkingRandom());
+        animatorController = GetComponent<Animator>();
+        StartCoroutine(WalkingRandom());
     }
 
 
     void Update()
     {
+        AnimControll();
+    }
+
+    private void AnimControll()
+    {
+        animatorController.SetBool("Idle", idle);
+        animatorController.SetBool("Walk", walk);
+        animatorController.SetBool("Run", run);
+        animatorController.SetBool("Loose", loose);
+    }
+
+    public IEnumerator Struck(float delay, Vector3 direction, float force)
+    {
         if (live)
         {
-            LookAtPlayer();
+            GetComponent<BoxCollider>().enabled = false;
+            yield return new WaitForSeconds(delay);
+            live = false;
+            idle = false;
+            run = false;
+            loose = true;
+
+            // gameObject.tag = "Carcass";
+            // gameObject.layer = LayerMask.NameToLayer("Carcass");
+
+            transform.forward = -direction.normalized;
+
+            float elapsed = 0.0f;
+            while (elapsed < 0.75f)
+            {
+                yield return null;
+
+                elapsed += Time.deltaTime;
+
+                transform.position += force * Time.deltaTime * direction;
+            }
+
+            GameObject goStackElement = Instantiate(stackElement);
+            goStackElement.transform.position = transform.position + Vector3.up*0.75f;
+            Destroy(gameObject);
         }
-    }
 
-    private void LookAtPlayer()
-    {
-        look = playerTransform.position;
-        look.y = transform.position.y;
-        transform.forward = (look - transform.position).normalized;
-    }
-
-    public IEnumerator Struck(float delay, Vector3 direction)
-    {
-        yield return new WaitForSeconds(delay);
-        live = false;
-        gameObject.tag = "Carcass";
-        gameObject.layer = LayerMask.NameToLayer("Carcass");
-
-        direction.y = 2;
-        direction *= 200.0f;
-        GetComponent<Rigidbody>().AddForce(direction, ForceMode.Force);
     }
 
     IEnumerator WalkingRandom()
@@ -52,36 +76,60 @@ public class Enemy : MonoBehaviour
         Vector3 finalPoint = new(x, transform.position.y, z);
         Vector3 iniPoint = transform.position;
 
-        transform.forward = (finalPoint - iniPoint).normalized;
+        // transform.forward = (finalPoint - iniPoint).normalized;
 
         float elapsed = 0.0f;
-        float time = Random.Range(1.0f, 3.0f);
+        float time = Random.Range(3.0f, 5.0f);
         while (true)
         {
+
+            if (!live) break;
+
+            transform.forward = (finalPoint - iniPoint).normalized;
+
+
+            idle = false;
+            run = true;
             while (elapsed < time)
             {
+                if (!live)
+                {
+                    idle = false;
+                    run = true;
+                    break;
+                }
                 elapsed += Time.deltaTime;
                 transform.position = Vector3.Lerp(iniPoint, finalPoint, elapsed / time);
                 yield return null;
             }
-
-            yield return new WaitForSeconds(Random.Range(0.5f, 3.0f));
-
-            elapsed = 0.0f;
-            iniPoint = transform.position;
-
-            if (Random.Range(0, 2) == 1)
+            if (live)
             {
-                finalPoint.x = playerTransform.position.x;
-                finalPoint.z = playerTransform.position.z;
+                idle = true;
+                run = false;
+
+                yield return new WaitForSeconds(Random.Range(2.5f, 7.0f));
+
+                elapsed = 0.0f;
+                iniPoint = transform.position;
+
+                if (Random.Range(0, 6) == 1)
+                {
+                    finalPoint.x = playerTransform.position.x;
+                    finalPoint.z = playerTransform.position.z;
+                }
+                else
+                {
+                    finalPoint.x = Random.Range(-11.0f, 11.0f);
+                    finalPoint.z = Random.Range(-9.0f, 9.0f);
+                }
+
+                time = Random.Range(3.0f, 5.0f);
             }
             else
             {
-                finalPoint.x = Random.Range(-11.0f, 11.0f);
-                finalPoint.z = Random.Range(-9.0f, 9.0f);
+                break;
             }
-            
-            time = Random.Range(1.0f, 3.0f);
+
             
         }
     }

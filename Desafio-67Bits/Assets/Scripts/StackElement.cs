@@ -17,5 +17,14 @@ public class StackElement : MonoBehaviour
 
             transform.position = newPosition;
         }
+
+        SpinAround();
     }
+
+    private void SpinAround()
+{
+    Vector3 rotation = transform.eulerAngles;
+    rotation.y += 90f * Time.deltaTime;
+    transform.eulerAngles = rotation;
+}
 }
