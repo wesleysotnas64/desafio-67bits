@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
 
     private PlayerAnimation playerAnimation;
     public StackController stackcController;
+    public FixedJoystick fixedJoystick;
 
     void Start()
     {
@@ -19,11 +20,13 @@ public class PlayerMove : MonoBehaviour
         direction = Vector3.zero;
 
         playerAnimation = GetComponent<PlayerAnimation>();
+        fixedJoystick = GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
     }
 
     void Update()
     {
         ControllersKeyboard();
+        ControllersJoystick();
     }
 
     private void ControllersKeyboard()
@@ -34,6 +37,18 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.S)) direction.z -= 1.0f;
         if (Input.GetKey(KeyCode.A)) direction.x -= 1.0f;
         if (Input.GetKey(KeyCode.D)) direction.x += 1.0f;
+
+        direction.Normalize();
+
+        Move(direction);
+    }
+
+    private void ControllersJoystick()
+    {
+        direction = Vector3.zero;
+
+        direction.z = fixedJoystick.Direction.y;
+        direction.x = fixedJoystick.Direction.x;
 
         direction.Normalize();
 
@@ -67,6 +82,7 @@ public class PlayerMove : MonoBehaviour
                 posEnemy.y = transform.position.y;
                 transform.forward = (posEnemy - transform.position).normalized;
                 StartCoroutine(playerAnimation.WaitAttack());
+                StartCoroutine(collision.gameObject.GetComponent<Enemy>().Struck(0.45f, transform.forward));
 
                 break;
 
