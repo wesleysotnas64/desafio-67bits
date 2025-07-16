@@ -47,8 +47,6 @@ public class Enemy : MonoBehaviour
             run = false;
             loose = true;
 
-            // gameObject.tag = "Carcass";
-            // gameObject.layer = LayerMask.NameToLayer("Carcass");
 
             transform.forward = -direction.normalized;
 
