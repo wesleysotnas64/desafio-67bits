@@ -8,9 +8,14 @@ public class SkullEnemySpawner : MonoBehaviour
     public int currentQuantity;
     public GameObject skullGameObject;
 
+    void Start()
+    {
+        currentQuantity = 0;
+    }
+
     public IEnumerator SpawnSkulls()
     {
-        for (int i = 0; i < quantity; i++)
+        for (int i = currentQuantity; i < quantity; i++)
         {
             Instantiate(skullGameObject).transform.position = transform.position;
             currentQuantity++;
@@ -23,7 +28,7 @@ public class SkullEnemySpawner : MonoBehaviour
         currentQuantity--;
         if (currentQuantity <= 0)
         {
-
+            GameObject.Find("CoinStartSpawn").GetComponent<CoinStartSpawn>().EnableDisable();
         }
     } 
 }

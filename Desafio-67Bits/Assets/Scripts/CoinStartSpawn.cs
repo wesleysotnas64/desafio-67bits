@@ -28,9 +28,12 @@ public class CoinStartSpawn : MonoBehaviour
 
     public void EnableDisable()
     {
-        StartCoroutine(
-            GameObject.Find("SkullEnemySpawner").GetComponent<SkullEnemySpawner>().SpawnSkulls()
-        );
+        if (enable)
+        {
+            StartCoroutine(
+                GameObject.Find("SkullEnemySpawner").GetComponent<SkullEnemySpawner>().SpawnSkulls()
+            );
+        }
 
         StartCoroutine(TranslateEnable());
     }

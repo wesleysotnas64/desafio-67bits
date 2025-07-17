@@ -62,6 +62,7 @@ public class Enemy : MonoBehaviour
 
             GameObject goStackElement = Instantiate(stackElement);
             goStackElement.transform.position = transform.position + Vector3.up*0.75f;
+            GameObject.Find("SkullEnemySpawner").GetComponent<SkullEnemySpawner>().EnemyDestroied();
             Destroy(gameObject);
         }
 
