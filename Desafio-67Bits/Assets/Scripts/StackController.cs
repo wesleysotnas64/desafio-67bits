@@ -15,8 +15,7 @@ public class StackController : MonoBehaviour
 
     public void AddElementAtStack(GameObject carcassGameObject)
     {
-        // carcassGameObject.GetComponent<BoxCollider>().enabled = false;
-        // carcassGameObject.GetComponent<Rigidbody>().useGravity = false;
+        carcassGameObject.GetComponent<BoxCollider>().enabled = false;
         if (stack.Count == 0)
         {
             carcassGameObject.GetComponent<StackElement>().target = gameObject.transform;

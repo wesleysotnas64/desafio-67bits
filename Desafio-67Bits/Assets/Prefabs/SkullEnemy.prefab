@@ -472,6 +472,7 @@ MonoBehaviour:
   idle: 0
   loose: 0
   run: 0
+  stackElement: {fileID: 1057812020919743891, guid: fd06e317553ce6242a83cf2018cce17c, type: 3}
 --- !u!95 &3029709561071108472
 Animator:
   serializedVersion: 7

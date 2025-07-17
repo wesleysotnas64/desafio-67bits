@@ -95,6 +95,10 @@ public class PlayerMove : MonoBehaviour
                 stackcController.AddElementAtStack(other.gameObject);
                 break;
 
+            case "Coin":
+                other.GetComponent<CoinStartSpawn>().EnableDisable();
+                break;
+
             default:
                 break;
         }

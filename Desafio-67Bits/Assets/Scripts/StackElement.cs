@@ -22,9 +22,9 @@ public class StackElement : MonoBehaviour
     }
 
     private void SpinAround()
-{
-    Vector3 rotation = transform.eulerAngles;
-    rotation.y += 90f * Time.deltaTime;
-    transform.eulerAngles = rotation;
-}
+    {
+        Vector3 rotation = transform.eulerAngles;
+        rotation.y += 90f * Time.deltaTime;
+        transform.eulerAngles = rotation;
+    }
 }
