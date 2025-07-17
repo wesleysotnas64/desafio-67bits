@@ -5,6 +5,6 @@ public class Grate : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Destroy(other.gameObject);
-        //Find sceneController and add sacrificePoint;
+        GameObject.Find("Canvas").GetComponent<SceneController>().Point();
     }
 }

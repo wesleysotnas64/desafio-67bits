@@ -10,7 +10,7 @@ public class CoinStartSpawn : MonoBehaviour
     void Start()
     {
         enable = false;
-        StartCoroutine(TranslateEnable());
+        // StartCoroutine(TranslateEnable());
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class CoinStartSpawn : MonoBehaviour
         StartCoroutine(TranslateEnable());
     }
 
-    IEnumerator TranslateEnable()
+    public IEnumerator TranslateEnable()
     {
         GetComponent<BoxCollider>().enabled = false;
 
@@ -48,14 +48,14 @@ public class CoinStartSpawn : MonoBehaviour
         if (enable)
         {
             enable = false;
-            initial = new(0, 2, 0);
-            final = Vector3.zero;
+            initial = new(1, 2, 0);
+            final = new(1,0,0);
         }
         else
         {
             enable = true;
-            final = new(0, 2, 0);
-            initial = Vector3.zero;
+            final = new(1, 2, 0);
+            initial = new(1,0,0);
         }
 
 

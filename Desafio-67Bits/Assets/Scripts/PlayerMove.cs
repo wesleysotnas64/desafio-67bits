@@ -23,7 +23,11 @@ public class PlayerMove : MonoBehaviour
         // claveIsActive = false;
 
         playerAnimation = GetComponent<PlayerAnimation>();
-        fixedJoystick = GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
+        try
+        {
+            fixedJoystick = GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
+        }
+        catch {}
     }
 
     void Update()
@@ -50,6 +54,7 @@ public class PlayerMove : MonoBehaviour
 
     private void ControllersJoystick()
     {
+        if (!fixedJoystick) return;
         direction = Vector3.zero;
 
         direction.z = fixedJoystick.Direction.y;
