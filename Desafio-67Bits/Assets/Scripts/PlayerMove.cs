@@ -9,8 +9,8 @@ public class PlayerMove : MonoBehaviour
     private float baseSpeed;
     [SerializeField]
     private float currentSpeed;
-    public bool claveIsActive;
-    public GameObject claveObject;
+    public bool clubIsActive;
+    public GameObject clubObject;
 
     private PlayerAnimation playerAnimation;
     public StackController stackcController;
@@ -20,7 +20,7 @@ public class PlayerMove : MonoBehaviour
     {
         currentSpeed = baseSpeed;
         direction = Vector3.zero;
-        // claveIsActive = false;
+        // clubIsActive = false;
 
         playerAnimation = GetComponent<PlayerAnimation>();
         try
@@ -35,7 +35,7 @@ public class PlayerMove : MonoBehaviour
         ControllersKeyboard();
         ControllersJoystick();
 
-        claveObject.SetActive(claveIsActive);
+        clubObject.SetActive(clubIsActive);
     }
 
     private void ControllersKeyboard()
@@ -92,7 +92,7 @@ public class PlayerMove : MonoBehaviour
                 posEnemy.y = transform.position.y;
                 transform.forward = (posEnemy - transform.position).normalized;
                 StartCoroutine(playerAnimation.WaitAttack());
-                StartCoroutine(other.gameObject.GetComponent<Enemy>().Struck(0.45f, transform.forward, claveIsActive ? 10.0f : 5.0f));
+                StartCoroutine(other.gameObject.GetComponent<Enemy>().Struck(0.45f, transform.forward, clubIsActive ? 10.0f : 5.0f));
 
                 break;
 
@@ -106,6 +106,10 @@ public class PlayerMove : MonoBehaviour
 
             case "GrateTriggerArea":
                 stackcController.RemoveAllElements();
+                break;
+
+            case "StoreTriggerArea":
+                GameObject.Find("Canvas").GetComponent<SceneController>().OpenStore();
                 break;
 
             default:

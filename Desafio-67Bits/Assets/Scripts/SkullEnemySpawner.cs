@@ -11,6 +11,7 @@ public class SkullEnemySpawner : MonoBehaviour
     void Start()
     {
         currentQuantity = 0;
+        quantity = 5;
     }
 
     public IEnumerator SpawnSkulls()

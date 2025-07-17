@@ -9,6 +9,7 @@ TagManager:
   - Coin
   - Grate
   - GrateTriggerArea
+  - StoreTriggerArea
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Coin
   - Grate
   - GrateTriggerArea
-  - 
+  - StoreTriggerArea
   - 
   - 
   - 

@@ -7,24 +7,24 @@ public class StackController : MonoBehaviour
 {
     public List<GameObject> stack;
     public GameObject stackGameObject;
-    public int maxStack;
-    public int currentStack;
+    public int maxStackSlot;
+    public int currentStackSlot;
 
     void Start()
     {
         stack = new List<GameObject>();
-        maxStack = 3;
-        currentStack = 0;
+        maxStackSlot = 1;
+        currentStackSlot = 0;
     }
 
 
     public void AddElementAtStack(GameObject carcassGameObject)
     {
-        if (currentStack < maxStack)
+        if (currentStackSlot < maxStackSlot)
         {
             carcassGameObject.GetComponent<BoxCollider>().enabled = false;
 
-            if (currentStack == 0)
+            if (currentStackSlot == 0)
             {
                 carcassGameObject.GetComponent<StackElement>().target = gameObject.transform;
             }
@@ -33,7 +33,7 @@ public class StackController : MonoBehaviour
                 carcassGameObject.GetComponent<StackElement>().target = stack.Last().transform;
             }
             stack.Add(carcassGameObject);
-            currentStack++;
+            currentStackSlot++;
         }
 
     }
@@ -45,7 +45,7 @@ public class StackController : MonoBehaviour
 
     IEnumerator RemoveAllElementsEnum()
     {
-        while (currentStack > 0)
+        while (currentStackSlot > 0)
         {
             yield return new WaitForSeconds(0.2f);
 
@@ -59,7 +59,7 @@ public class StackController : MonoBehaviour
             }
 
             stack.RemoveAt(stack.Count - 1);
-            currentStack--;
+            currentStackSlot--;
         }
 
     }
