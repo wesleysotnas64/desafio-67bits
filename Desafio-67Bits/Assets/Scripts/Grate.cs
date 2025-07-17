@@ -1,0 +1,10 @@
+using UnityEngine;
+
+public class Grate : MonoBehaviour
+{
+    void OnTriggerEnter(Collider other)
+    {
+        Destroy(other.gameObject);
+        //Find sceneController and add sacrificePoint;
+    }
+}

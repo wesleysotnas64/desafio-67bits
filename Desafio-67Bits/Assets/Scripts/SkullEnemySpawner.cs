@@ -8,12 +8,6 @@ public class SkullEnemySpawner : MonoBehaviour
     public int currentQuantity;
     public GameObject skullGameObject;
 
-    // void Start()
-    // {
-    //     StartCoroutine(SpawnSkulls());
-    // }
-
-
     public IEnumerator SpawnSkulls()
     {
         for (int i = 0; i < quantity; i++)
@@ -22,7 +16,6 @@ public class SkullEnemySpawner : MonoBehaviour
             currentQuantity++;
             yield return new WaitForSeconds(spawnTime);
         }
-
     }
 
     public void EnemyDestroied()

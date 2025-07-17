@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -33,6 +34,32 @@ public class StackController : MonoBehaviour
             }
             stack.Add(carcassGameObject);
             currentStack++;
+        }
+
+    }
+
+    public void RemoveAllElements()
+    {
+        StartCoroutine(RemoveAllElementsEnum());
+    }
+
+    IEnumerator RemoveAllElementsEnum()
+    {
+        while (currentStack > 0)
+        {
+            yield return new WaitForSeconds(0.2f);
+
+            GameObject lastElement = stack.Last();
+            lastElement.GetComponent<BoxCollider>().enabled = true;
+
+            StackElement element = lastElement.GetComponent<StackElement>();
+            if (element != null)
+            {
+                element.target = GameObject.Find("FireDTarget").transform;
+            }
+
+            stack.RemoveAt(stack.Count - 1);
+            currentStack--;
         }
 
     }

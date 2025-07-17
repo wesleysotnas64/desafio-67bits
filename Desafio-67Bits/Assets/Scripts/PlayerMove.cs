@@ -99,6 +99,10 @@ public class PlayerMove : MonoBehaviour
                 other.GetComponent<CoinStartSpawn>().EnableDisable();
                 break;
 
+            case "GrateTriggerArea":
+                stackcController.RemoveAllElements();
+                break;
+
             default:
                 break;
         }
