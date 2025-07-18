@@ -32,25 +32,25 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        ControllersKeyboard();
+        // ControllersKeyboard();
         ControllersJoystick();
 
         clubObject.SetActive(clubIsActive);
     }
 
-    private void ControllersKeyboard()
-    {
-        direction = Vector3.zero;
+    // private void ControllersKeyboard()
+    // {
+    //     direction = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W)) direction.z += 1.0f;
-        if (Input.GetKey(KeyCode.S)) direction.z -= 1.0f;
-        if (Input.GetKey(KeyCode.A)) direction.x -= 1.0f;
-        if (Input.GetKey(KeyCode.D)) direction.x += 1.0f;
+    //     if (Input.GetKey(KeyCode.W)) direction.z += 1.0f;
+    //     if (Input.GetKey(KeyCode.S)) direction.z -= 1.0f;
+    //     if (Input.GetKey(KeyCode.A)) direction.x -= 1.0f;
+    //     if (Input.GetKey(KeyCode.D)) direction.x += 1.0f;
 
-        direction.Normalize();
+    //     direction.Normalize();
 
-        Move(direction);
-    }
+    //     Move(direction);
+    // }
 
     private void ControllersJoystick()
     {
@@ -59,6 +59,9 @@ public class PlayerMove : MonoBehaviour
 
         direction.z = fixedJoystick.Direction.y;
         direction.x = fixedJoystick.Direction.x;
+        // direction.z = fixedJoystick.Vertical;
+        // direction.x = fixedJoystick.Horizontal;
+        
 
         direction.Normalize();
 
