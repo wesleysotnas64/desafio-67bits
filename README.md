@@ -21,11 +21,11 @@ Este projeto foi desenvolvido exclusivamente para Android, com jogabilidade volt
 
 ### 📦 APK
 
-Você pode baixar o jogo no botão abaixo e instalar manualmente em seu dispositivo Android:
+Você pode baixar o jogo acessando o arquivo `Build/Goblin & Skulls.apk` diretamente no repositório e instalá-lo manualmente em seu dispositivo Android:
 
-Link em breve ....
+🔗 [Download direto do APK](https://github.com/wesleysotnas64/desafio-67bits/blob/main/Build/Goblin%20%26%20Skulls.apk)
 
-> ⚠️ Para instalar o APK, talvez seja necessário permitir a instalação de fontes desconhecidas nas configurações do seu dispositivo.
+> ⚠️ Para instalar o APK, pode ser necessário habilitar a opção **“Permitir instalação de fontes desconhecidas”** nas configurações de segurança do seu dispositivo.
 
 ## 🧠 Tecnologias Utilizadas
 
