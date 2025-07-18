@@ -22,6 +22,8 @@ public class StackController : MonoBehaviour
     {
         if (NotMaximumLoad())
         {
+            carcassGameObject.tag = "Taked";
+            carcassGameObject.layer = LayerMask.NameToLayer("Taked");
             carcassGameObject.GetComponent<BoxCollider>().enabled = false;
 
             if (currentStackSlot == 0)
