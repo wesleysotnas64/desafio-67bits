@@ -104,6 +104,7 @@ public class PlayerMove : MonoBehaviour
 
             case "Coin":
                 other.GetComponent<CoinStartSpawn>().EnableDisable();
+                other.GetComponent<AudioSource>().Play();
                 break;
 
             case "GrateTriggerArea":
