@@ -12,6 +12,8 @@ Você controla um goblin em uma dungeon cheia de esqueletos. Derrote inimigos, e
 - Com os pontos, é possível:
   - Aumentar o limite da pilha de caveiras
   - Adquirir uma **clava** para golpes mais fortes
+    
+![Unity Developer Teste Técnico](https://github.com/user-attachments/assets/112c73b3-8fbc-40f4-90c2-51b2ba6b093a)
 
 ## 📱 Build Android
 
@@ -21,7 +23,7 @@ Este projeto foi desenvolvido exclusivamente para Android, com jogabilidade volt
 
 Você pode baixar o jogo no botão abaixo e instalar manualmente em seu dispositivo Android:
 
-➡️ **[Download APK](./Builds/GoblinAndSkulls.apk)**
+Link em breve ....
 
 > ⚠️ Para instalar o APK, talvez seja necessário permitir a instalação de fontes desconhecidas nas configurações do seu dispositivo.
 
@@ -31,3 +33,12 @@ Você pode baixar o jogo no botão abaixo e instalar manualmente em seu disposit
 - **C#**
 - Interface mobile com joystick virtual
 - Sistema de upgrades básico
+
+---
+
+## 🙏 Agradecimento
+
+Obrigado por visitar este repositório!  
+Acesse meu portfólio completo para conhecer outros projetos:
+
+🔗 [wesleysantos.portfolio](https://wesley-santos-dev-portfolio.netlify.app/)
