@@ -6,7 +6,7 @@
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
-[Bb]uild/
+# [Bb]uild/ <-- Comentado para customizar abaixo
 [Bb]uilds/
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
@@ -67,7 +67,11 @@ sysinfo.txt
 mono_crash.*
 
 # Builds
-*.apk
+# Ignora tudo na pasta Build
+Build/*
+# Excetua o APK desejado
+!Build/Goblin & Skulls.apk
+
 *.aab
 *.unitypackage
 *.unitypackage.meta
@@ -84,16 +88,10 @@ InitTestScene*.unity*
 /[Aa]ssets/StreamingAssets/aa*
 /[Aa]ssets/AddressableAssetsData/link.xml*
 /[Aa]ssets/Addressables_Temp*
-# By default, Addressables content builds will generate addressables_content_state.bin
-# files in platform-specific subfolders, for example:
-# /Assets/AddressableAssetsData/OSX/addressables_content_state.bin
 /[Aa]ssets/AddressableAssetsData/*/*.bin*
 
 # Visual Scripting auto-generated files
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db.meta
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers
-/[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers.meta
-
-# Auto-generated scenes by play mode tests
-/[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+/[Aa]

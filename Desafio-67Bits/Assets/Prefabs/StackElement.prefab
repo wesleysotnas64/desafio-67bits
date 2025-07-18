@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   offset: {x: 0, y: 0.75, z: 0}
-  speed: 20
+  speed: 10
   newPosition: {x: 0, y: 0, z: 0}
   audioBroken: {fileID: 8300000, guid: c357e50cd9276074596007df33e9f415, type: 3}
   audioTaken: {fileID: 8300000, guid: 603d6b26c1fc5054491fdd2ac89e5254, type: 3}

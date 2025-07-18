@@ -16,7 +16,7 @@ public class FpsCalc : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
             fps = 1.0f / Time.deltaTime;
             textFps.text = $"{Math.Floor(fps)} fps";
         }
