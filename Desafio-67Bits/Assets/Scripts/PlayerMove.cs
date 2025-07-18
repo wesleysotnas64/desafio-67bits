@@ -97,6 +97,8 @@ public class PlayerMove : MonoBehaviour
                 break;
 
             case "Carcass":
+                if(stackcController.NotMaximumLoad())
+                    other.GetComponent<StackElement>().PlayAudioTaken();
                 stackcController.AddElementAtStack(other.gameObject);
                 break;
 

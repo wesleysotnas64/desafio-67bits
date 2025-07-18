@@ -20,7 +20,7 @@ public class StackController : MonoBehaviour
 
     public void AddElementAtStack(GameObject carcassGameObject)
     {
-        if (currentStackSlot < maxStackSlot)
+        if (NotMaximumLoad())
         {
             carcassGameObject.GetComponent<BoxCollider>().enabled = false;
 
@@ -36,6 +36,11 @@ public class StackController : MonoBehaviour
             currentStackSlot++;
         }
 
+    }
+
+    public bool NotMaximumLoad()
+    {
+        return currentStackSlot < maxStackSlot;
     }
 
     public void RemoveAllElements()

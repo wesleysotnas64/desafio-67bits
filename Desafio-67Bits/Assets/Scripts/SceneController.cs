@@ -24,6 +24,9 @@ public class SceneController : MonoBehaviour
     public TMP_Text textBuyUnavailable;
     public TMP_Text textStackPrice;
     public TMP_Text textSpawnPrice;
+    private AudioSource audioSource;
+    public AudioClip audioClipBuy;
+    public AudioClip audioClipUnavalable;
     void Start()
     {
         sacrificePoints = 0;
@@ -35,6 +38,7 @@ public class SceneController : MonoBehaviour
         textMaxSpawn.text = $"x {maxSpawn}";
 
         InitialSetUp();
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -101,11 +105,18 @@ public class SceneController : MonoBehaviour
         int cost = 15;
         if (sacrificePoints >= cost && !GameObject.Find("Player").GetComponent<PlayerMove>().clubIsActive)
         {
+            audioSource.clip = audioClipBuy;
+            audioSource.Play();
             GameObject.Find("Player").GetComponent<PlayerMove>().clubIsActive = true;
             sacrificePoints -= cost;
             textBuyUnavailable.text = "Unavailable";
             textBuyUnavailable.color = Color.red;
             UpdateUI();
+        }
+        else
+        {
+            audioSource.clip = audioClipUnavalable;
+            audioSource.Play();
         }
     }
 
@@ -114,11 +125,18 @@ public class SceneController : MonoBehaviour
         int cost = GetFibonacciCost(maxStack);
         if (sacrificePoints >= cost)
         {
+            audioSource.clip = audioClipBuy;
+            audioSource.Play();
             GameObject.Find("StackController").GetComponent<StackController>().maxStackSlot++;
             maxStack++;
             sacrificePoints -= cost;
             stackPrice = GetFibonacciCost(maxStack);
             UpdateUI();
+        }
+        else
+        {
+            audioSource.clip = audioClipUnavalable;
+            audioSource.Play();
         }
     }
 
@@ -127,11 +145,18 @@ public class SceneController : MonoBehaviour
         int cost = GetFibonacciCost(maxSpawn);
         if (sacrificePoints >= cost)
         {
+            audioSource.clip = audioClipBuy;
+            audioSource.Play();
             GameObject.Find("SkullEnemySpawner").GetComponent<SkullEnemySpawner>().quantity++;
             maxSpawn++;
             sacrificePoints -= cost;
             spawnPrice = GetFibonacciCost(maxSpawn);
             UpdateUI();
+        }
+        else
+        {
+            audioSource.clip = audioClipUnavalable;
+            audioSource.Play();
         }
     }
 

@@ -6,6 +6,16 @@ public class StackElement : MonoBehaviour
     public Vector3 offset;
     public float speed;
     public Vector3 newPosition;
+    private AudioSource audioSource;
+    public AudioClip audioBroken;
+    public AudioClip audioTaken;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = audioBroken;
+        audioSource.Play();
+    }
 
     void Update()
     {
@@ -26,5 +36,11 @@ public class StackElement : MonoBehaviour
         Vector3 rotation = transform.eulerAngles;
         rotation.y += 90f * Time.deltaTime;
         transform.eulerAngles = rotation;
+    }
+
+    public void PlayAudioTaken()
+    {
+        audioSource.clip = audioTaken;
+        audioSource.Play();
     }
 }

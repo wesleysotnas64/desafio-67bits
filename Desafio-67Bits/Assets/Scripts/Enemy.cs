@@ -51,6 +51,9 @@ public class Enemy : MonoBehaviour
             transform.forward = -direction.normalized;
 
             float elapsed = 0.0f;
+
+            GetComponent<AudioSource>().Play();
+
             while (elapsed < 0.75f)
             {
                 yield return null;
